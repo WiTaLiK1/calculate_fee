@@ -30,7 +30,7 @@ class CashInFeeConfig extends FeeConfig {
    * @returns {string[]}
    */
   static getAllNames(data) {
-    const hasCashInType = data.find(({ type }) => type === 'cash_in');
+    const hasCashInType = Boolean(data.find(({ type }) => type === 'cash_in'));
 
     if (hasCashInType) {
       return [CashInFeeConfig.getName({ type: 'cash_in' })];

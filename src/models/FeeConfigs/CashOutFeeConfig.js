@@ -51,5 +51,4 @@ class CashOutFeeConfig extends FeeConfig {
   }
 }
 
-
 module.exports = CashOutFeeConfig;

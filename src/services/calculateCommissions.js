@@ -1,8 +1,8 @@
-const CashInConfig = require('../FeeConfigs/CashInFeeConfig');
-const CashOutConfig = require('../FeeConfigs/CashOutFeeConfig');
-const Users = require('../Users/Users');
+const CashInConfig = require('../models/FeeConfigs/CashInFeeConfig');
+const CashOutConfig = require('../models/FeeConfigs/CashOutFeeConfig');
+const Users = require('../models/Users/Users');
 // utils
-const { numbersToMoney, calculateWeekNumber } = require('../utils');
+const { numberToMoney, calculateWeekNumber } = require('../utils');
 // services
 const calculateFee = require('./calculateFee');
 
@@ -45,14 +45,6 @@ const calculateCommissions = async (transactions) => {
     // calculate week number
     const weekNumber = calculateWeekNumber(date);
 
-    // add amount per week to user
-    users.calculateAmountPerWeek({
-      userId,
-      amount,
-      weekNumber,
-      type,
-    });
-
     const { percents, ...config } = configs;
 
     Object.keys(config).forEach((name) => {
@@ -72,10 +64,18 @@ const calculateCommissions = async (transactions) => {
       }
     });
 
+    // add amount per week to user
+    users.calculateAmountPerWeek({
+      userId,
+      amount,
+      weekNumber,
+      type,
+    });
+
     return accum;
   }, []);
 
-  return result.map((value) => numbersToMoney(value));
+  return result.map((value) => numberToMoney(value));
 };
 
 module.exports = calculateCommissions;
