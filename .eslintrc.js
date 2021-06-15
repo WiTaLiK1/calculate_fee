@@ -1,13 +1,13 @@
 module.exports = {
-  "env": {
-    "browser": true,
-    "es2021": true
+  env: {
+    browser: true,
+    es2021: true,
+    jest: true,
   },
-  "extends": ["airbnb", "airbnb/hooks"],
-  "parserOptions": {
-    "ecmaVersion": 12,
-    "sourceType": "module"
+  extends: ['airbnb'],
+  parserOptions: {
+    ecmaVersion: 12,
+    sourceType: 'module',
   },
-  "rules": {
-  }
+  rules: {},
 };

@@ -4,6 +4,8 @@ class Users {
   }
 
   /**
+   * Get user by id
+   *
    * @param {number} userId
    * @returns {Object}
    */
@@ -14,6 +16,7 @@ class Users {
 
   /**
    * Get user by userId and type
+   *
    * @param {number} userId
    * @param {string} type
    * @returns {Object} {*}
@@ -28,6 +31,8 @@ class Users {
   }
 
   /**
+   * Get amount per week by user
+   *
    * @param {number} userId
    * @param {string} type
    * @param {number} weekNumber
@@ -40,6 +45,8 @@ class Users {
   }
 
   /**
+   * Set amount per week
+   *
    * @param {number} userId
    * @param {string} type
    * @param {number} weekNumber
@@ -52,6 +59,8 @@ class Users {
   }
 
   /**
+   * Calculate amount per week and set it to user
+   *
    * @param {number} userId
    * @param {string} type
    * @param {number} amount
@@ -63,9 +72,9 @@ class Users {
     amount,
     weekNumber,
   }) {
-    const amountWeek = this.getAmountPerWeek({ userId, type, weekNumber });
+    const amountPerWeek = this.getAmountPerWeek({ userId, type, weekNumber });
 
-    this.setAmountPerWeek({ userId, type, weekNumber }, amountWeek + amount);
+    this.setAmountPerWeek({ userId, type, weekNumber }, amountPerWeek + amount);
   }
 }
 

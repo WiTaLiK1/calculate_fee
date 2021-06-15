@@ -27,12 +27,12 @@ const calculateFee = {
    * @returns {number}
    */
   week_limit: ({ config: { percents, week_limit: weekLimit }, amount, userUsedPerWeek }) => {
-    if (userUsedPerWeek > weekLimit.amount) { // if user used more than week limit
+    if (amount + userUsedPerWeek > weekLimit.amount) { // if user used more than week limit
       let newAmount = amount;
 
-      if (userUsedPerWeek - amount <= weekLimit.amount) {
+      if (userUsedPerWeek < weekLimit.amount) {
         // calculate without free
-        newAmount = amount - weekLimit.amount;
+        newAmount = amount + userUsedPerWeek - weekLimit.amount;
       }
 
       return (newAmount * percents) / 100;
