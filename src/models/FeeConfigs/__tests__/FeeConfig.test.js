@@ -1,5 +1,6 @@
-const FeeConfig = require('../FeeConfig');
-const api = require('../../../services/api');
+import FeeConfig from '../FeeConfig.js';
+import api from '../../../services/api.js';
+import { response } from '../../../services/__mocks__/api.js';
 
 jest.mock('../../../services/api');
 
@@ -71,7 +72,7 @@ describe('The FeeConfig class', () => {
 
         const config = await feeConfig.getConfigByName('cash-in');
 
-        expect(config).toEqual(api.response['cash-in']);
+        expect(config).toEqual(response['cash-in']);
       });
 
       it('should set config from api', async () => {
@@ -80,7 +81,7 @@ describe('The FeeConfig class', () => {
         await feeConfig.getConfigByName('cash-in');
         const config = feeConfig.getConfig('cash-in');
 
-        expect(config).toEqual(api.response['cash-in']);
+        expect(config).toEqual(response['cash-in']);
       });
     });
 
@@ -99,8 +100,8 @@ describe('The FeeConfig class', () => {
 
           const [config1, config2] = await feeConfig.getAllConfigs(['cash-in', 'cash-out-natural']);
 
-          expect(config1).toBe(api.response['cash-in']);
-          expect(config2).toBe(api.response['cash-out-natural']);
+          expect(config1).toStrictEqual(response['cash-in']);
+          expect(config2).toStrictEqual(response['cash-out-natural']);
         });
 
         it('should set 2 configs', async () => {
@@ -111,8 +112,8 @@ describe('The FeeConfig class', () => {
           const config1 = feeConfig.getConfig('cash-in');
           const config2 = feeConfig.getConfig('cash-out-natural');
 
-          expect(config1).toBe(api.response['cash-in']);
-          expect(config2).toBe(api.response['cash-out-natural']);
+          expect(config1).toStrictEqual(response['cash-in']);
+          expect(config2).toStrictEqual(response['cash-out-natural']);
         });
       });
     });

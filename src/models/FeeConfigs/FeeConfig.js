@@ -1,6 +1,6 @@
-const api = require('../../services/api');
+import api from '../../services/api.js';
 
-class FeeConfig {
+export default class FeeConfig {
   constructor() {
     this.all = {};
   }
@@ -64,5 +64,3 @@ class FeeConfig {
     return Promise.all(names.map((name) => this.getConfigByName(name)));
   }
 }
-
-module.exports = FeeConfig;

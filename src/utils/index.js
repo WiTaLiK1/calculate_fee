@@ -1,4 +1,4 @@
-const getISOWeek = require('date-fns/getWeek');
+import getISOWeek from 'date-fns/getWeek/index.js';
 
 /**
  * Round value and format to string
@@ -6,7 +6,7 @@ const getISOWeek = require('date-fns/getWeek');
  * @param {number} value
  * @returns {string}
  */
-const numberToMoney = (value) => (Math.ceil(value * 100) / 100).toFixed(2);
+export const numberToMoney = (value) => (Math.ceil(value * 100) / 100).toFixed(2);
 
 /**
  * Calculate week number from date
@@ -14,11 +14,6 @@ const numberToMoney = (value) => (Math.ceil(value * 100) / 100).toFixed(2);
  * @param {Date} date
  * @returns {number} - week number
  */
-const calculateWeekNumber = (date) => getISOWeek(new Date(date), {
+export const calculateWeekNumber = (date) => getISOWeek(new Date(date), {
   weekStartsOn: 1,
 });
-
-module.exports = {
-  numberToMoney,
-  calculateWeekNumber,
-};

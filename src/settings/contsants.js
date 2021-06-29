@@ -1,5 +1,6 @@
-require('dotenv').config();
+import dotenv from 'dotenv';
 
-const { API_BASE_URL } = process.env;
+dotenv.config();
 
-module.exports = { API_BASE_URL };
+// eslint-disable-next-line import/prefer-default-export
+export const { API_BASE_URL } = process.env;

@@ -4,12 +4,16 @@
   "description": "",
   "main": "src/index3.js",
   "scripts": {
-    "start": "node ./src/index.js",
-    "test": "jest",
-    "test:watch": "jest --watch",
+    "start": "node  --experimental-json-modules ./src/index.js",
+    "test": "npx jest",
+    "test:watch": "jest --watch  --jest-environment-node",
     "test:coverage": "jest --coverage",
     "lint": "eslint ./src --fix"
   },
+  "engines": {
+    "node": ">=15.14"
+  },
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/WiTaLiK1/calculate_fee.git"
@@ -27,8 +31,18 @@
     "lodash": "^4.17.21"
   },
   "devDependencies": {
+    "@babel/core": "^7.14.6",
+    "@babel/node": "^7.14.7",
+    "@babel/preset-env": "^7.14.7",
+    "cross-env": "^7.0.3",
     "eslint": "^7.28.0",
     "eslint-config-airbnb": "^18.2.1",
     "jest": "^27.0.4"
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "./jest.setup.js"
+    ],
+    "transform": {}
   }
 }

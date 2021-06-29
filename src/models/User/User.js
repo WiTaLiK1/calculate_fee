@@ -1,4 +1,4 @@
-class Users {
+export default class User {
   constructor() {
     this.all = {};
   }
@@ -77,5 +77,3 @@ class Users {
     this.setAmountPerWeek({ userId, type, weekNumber }, amountPerWeek + amount);
   }
 }
-
-module.exports = Users;

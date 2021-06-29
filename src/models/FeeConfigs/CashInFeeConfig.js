@@ -1,6 +1,6 @@
-const FeeConfig = require('./FeeConfig');
+import FeeConfig from './FeeConfig.js';
 
-class CashInFeeConfig extends FeeConfig {
+export default class CashInFeeConfig extends FeeConfig {
   /**
    * Get name by type
    *
@@ -50,5 +50,3 @@ class CashInFeeConfig extends FeeConfig {
     await this.getAllConfigs(names);
   }
 }
-
-module.exports = CashInFeeConfig;

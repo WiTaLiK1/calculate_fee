@@ -1,4 +1,4 @@
-const calculateFee = {
+export default {
   /**
    * Calculate 'no more than *'
    *
@@ -41,5 +41,3 @@ const calculateFee = {
     return 0;
   },
 };
-
-module.exports = calculateFee;

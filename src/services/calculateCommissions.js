@@ -1,10 +1,10 @@
-const CashInConfig = require('../models/FeeConfigs/CashInFeeConfig');
-const CashOutConfig = require('../models/FeeConfigs/CashOutFeeConfig');
-const Users = require('../models/Users/Users');
+import CashInConfig from '../models/FeeConfigs/CashInFeeConfig.js';
+import CashOutConfig from '../models/FeeConfigs/CashOutFeeConfig.js';
+import User from '../models/User/User.js';
 // utils
-const { numberToMoney, calculateWeekNumber } = require('../utils');
+import { numberToMoney, calculateWeekNumber } from '../utils/index.js';
 // services
-const calculateFee = require('./calculateFee');
+import calculateFee from './calculateFee.js';
 
 /**
  * @param {Array} transactions
@@ -13,7 +13,7 @@ const calculateFee = require('./calculateFee');
 const calculateCommissions = async (transactions) => {
   const cashInConfig = new CashInConfig();
   const cashOutConfig = new CashOutConfig();
-  const users = new Users();
+  const user = new User();
 
   // Prefetch and save configs
   await Promise.all([
@@ -55,7 +55,7 @@ const calculateCommissions = async (transactions) => {
         const fee = calculateFeeFunction({
           config: { ...config, percents },
           amount,
-          userUsedPerWeek: users.getAmountPerWeek({ userId, type, weekNumber }),
+          userUsedPerWeek: user.getAmountPerWeek({ userId, type, weekNumber }),
         });
 
         accum.push(fee);
@@ -65,7 +65,7 @@ const calculateCommissions = async (transactions) => {
     });
 
     // add amount per week to user
-    users.calculateAmountPerWeek({
+    user.calculateAmountPerWeek({
       userId,
       amount,
       weekNumber,
@@ -78,4 +78,4 @@ const calculateCommissions = async (transactions) => {
   return result.map((value) => numberToMoney(value));
 };
 
-module.exports = calculateCommissions;
+export default calculateCommissions;

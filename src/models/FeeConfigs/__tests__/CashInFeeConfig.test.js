@@ -1,5 +1,6 @@
-const CashInFeeConfig = require('../CashInFeeConfig');
-const api = require('../../../services/api');
+import CashInFeeConfig from '../CashInFeeConfig.js';
+import api from '../../../services/api.js';
+import { response } from '../../../services/__mocks__/api.js';
 
 jest.mock('../../../services/api');
 
@@ -16,7 +17,8 @@ describe('The CashInFeeConfig class', () => {
 
   describe('The prefetchData method', () => {
     describe('when data has cash_in type', () => {
-      it('should call api when data has cash_in type', async () => {
+      it.only('should call api when data has cash_in type', async () => {
+        api.mockResolvedValueOnce(response['cash-in']);
         const data = [{
           type: 'cash_in',
         }];
@@ -35,7 +37,7 @@ describe('The CashInFeeConfig class', () => {
 
         await cashInFeeConfig.prefetchData(data);
 
-        expect(cashInFeeConfig.getConfig('cash-in')).toBe(api.response['cash-in']);
+        expect(cashInFeeConfig.getConfig('cash-in')).toBe(response['cash-in']);
       });
     });
 

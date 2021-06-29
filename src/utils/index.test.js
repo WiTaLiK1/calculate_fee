@@ -1,4 +1,4 @@
-const { numberToMoney } = require('./index');
+import { numberToMoney } from './index.js';
 
 describe('The numbersToMoney function', () => {
   it('should rounded to the smallest currency item when passed 0.1 Euro cent', () => {

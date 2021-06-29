@@ -1,12 +1,14 @@
 // services
-const calculateCommissions = require('./services/calculateCommissions');
+import calculateCommissions from './services/calculateCommissions.js';
 // storage
-const input = require('./storage/input.json');
+import input from './storage/input.json';
 
 async function bootstrap() {
   const result = await calculateCommissions(input);
 
-  console.log(result);
+  result.forEach((value) => {
+    console.log(value);
+  });
 }
 
 bootstrap();

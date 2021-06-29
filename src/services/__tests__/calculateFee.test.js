@@ -1,4 +1,4 @@
-const { min, max, week_limit: weekLimit } = require('../calculateFee');
+import calculateFee from '../calculateFee.js';
 
 describe('The calculateFee object', () => {
   describe('The min function', () => {
@@ -12,11 +12,11 @@ describe('The calculateFee object', () => {
     };
 
     it('should calculate fee when commission < max.amount', () => {
-      expect(max({ ...params, amount: 10 })).toBe(0.05);
+      expect(calculateFee.max({ ...params, amount: 10 })).toBe(0.05);
     });
 
     it('should return max.amount when commission > max.amount ', () => {
-      expect(max({ ...params, amount: 1000 })).toBe(params.config.max.amount);
+      expect(calculateFee.max({ ...params, amount: 1000 })).toBe(params.config.max.amount);
     });
   });
 
@@ -31,11 +31,11 @@ describe('The calculateFee object', () => {
     };
 
     it('should return min.amount when commission < min.amount', () => {
-      expect(min({ ...params, amount: 10 })).toBe(params.config.min.amount);
+      expect(calculateFee.min({ ...params, amount: 10 })).toBe(params.config.min.amount);
     });
 
     it('should return commission when commission > min.amount', () => {
-      expect(min({ ...params, amount: 1000 })).toBe(5);
+      expect(calculateFee.min({ ...params, amount: 1000 })).toBe(5);
     });
   });
 
@@ -50,16 +50,16 @@ describe('The calculateFee object', () => {
     };
 
     it('should return 0 when amount + userUsedPerWeek < week_limit.amount', () => {
-      expect(weekLimit({ ...params, amount: 80, userUsedPerWeek: 10 })).toBe(0);
+      expect(calculateFee.week_limit({ ...params, amount: 80, userUsedPerWeek: 10 })).toBe(0);
     });
 
     it('should return 0 when amount + userUsedPerWeek = week_limit.amount', () => {
-      expect(weekLimit({ ...params, amount: 100, userUsedPerWeek: 0 })).toBe(0);
+      expect(calculateFee.week_limit({ ...params, amount: 100, userUsedPerWeek: 0 })).toBe(0);
     });
 
     it('should calculate fee when amount + userUsedPerWeek ', () => {
-      expect(weekLimit({ ...params, amount: 100, userUsedPerWeek: 100 })).toBe(1);
-      expect(weekLimit({ ...params, amount: 250, userUsedPerWeek: 100 })).toBe(2.5);
+      expect(calculateFee.week_limit({ ...params, amount: 100, userUsedPerWeek: 100 })).toBe(1);
+      expect(calculateFee.week_limit({ ...params, amount: 250, userUsedPerWeek: 100 })).toBe(2.5);
     });
   });
 });

@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   cash_out_juridical: {
     percents: 0.3,
     min: {

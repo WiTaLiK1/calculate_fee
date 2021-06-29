@@ -1,7 +1,7 @@
-const uniqBy = require('lodash/uniqBy');
-const FeeConfig = require('./FeeConfig');
+import uniqBy from 'lodash/uniqBy.js';
+import FeeConfig from './FeeConfig.js';
 
-class CashOutFeeConfig extends FeeConfig {
+export default class CashOutFeeConfig extends FeeConfig {
   /**
    * Get name by type and userType
    *
@@ -50,5 +50,3 @@ class CashOutFeeConfig extends FeeConfig {
     await this.getAllConfigs(names);
   }
 }
-
-module.exports = CashOutFeeConfig;

@@ -1,14 +1,14 @@
-const Users = require('./Users');
+import User from './User.js';
 
 const defaultUser = {
   userId: 0,
   type: 'cash_in',
 };
 
-describe('The Users class', () => {
+describe('The User class', () => {
   describe('The getUser method', () => {
     it('should return new user when is mot exist', () => {
-      const users = new Users();
+      const users = new User();
 
       const user = users.getUser(defaultUser);
 
@@ -18,7 +18,7 @@ describe('The Users class', () => {
 
   describe('The getAmountPerWeek method', () => {
     it('should return 0 when is mot exist', () => {
-      const users = new Users();
+      const users = new User();
 
       const user = users.getAmountPerWeek({
         userId: defaultUser.userId,
@@ -34,7 +34,7 @@ describe('The Users class', () => {
     it('should add value to user', () => {
       const expectValue = 10;
 
-      const users = new Users();
+      const users = new User();
 
       users.setAmountPerWeek({
         ...defaultUser,
@@ -47,7 +47,7 @@ describe('The Users class', () => {
 
   describe('The calculateAmountPerWeek method', () => {
     it('should set amount per week to user when it is first amount per week', () => {
-      const users = new Users();
+      const users = new User();
 
       users.calculateAmountPerWeek({
         ...defaultUser,
@@ -59,7 +59,7 @@ describe('The Users class', () => {
     });
 
     it('should add amount per week when it is second amount per week', () => {
-      const users = new Users();
+      const users = new User();
 
       users.calculateAmountPerWeek({
         ...defaultUser,
@@ -77,7 +77,7 @@ describe('The Users class', () => {
     });
 
     it('should not change another week ', () => {
-      const users = new Users();
+      const users = new User();
 
       users.calculateAmountPerWeek({
         ...defaultUser,

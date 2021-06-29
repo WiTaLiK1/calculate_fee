@@ -1,5 +1,6 @@
-const CashOutFeeConfig = require('../CashOutFeeConfig');
-const api = require('../../../services/api');
+import CashOutFeeConfig from '../CashOutFeeConfig.js';
+import api from '../../../services/api.js';
+import { response } from '../../../services/__mocks__/api.js';
 
 jest.mock('../../../services/api');
 
@@ -92,8 +93,8 @@ describe('The CashOutFeeConfig class', () => {
         const setting1 = cashOutFeeConfig.getConfig('cash-out-juridical');
         const setting2 = cashOutFeeConfig.getConfig('cash-out-natural');
 
-        expect(setting1).toEqual(api.response['cash-out-juridical']);
-        expect(setting2).toEqual(api.response['cash-out-natural']);
+        expect(setting1).toEqual(response['cash-out-juridical']);
+        expect(setting2).toEqual(response['cash-out-natural']);
       });
     });
   });

@@ -1,8 +1,8 @@
-const calculateCommissions = require('../calculateCommissions');
-const input = require('../../storage/input.json');
-const api = require('../api');
+import calculateCommissions from '../calculateCommissions.js';
+import input from '../../storage/input.json';
+import api from '../api.js';
 
-jest.mock('../api');
+jest.mock('../api.js');
 
 afterEach(() => {
   api.mockClear();

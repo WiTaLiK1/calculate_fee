@@ -1,4 +1,4 @@
-const response = {
+export const response = {
   'cash-in': {
     percents: 0.03,
     max: {
@@ -22,5 +22,4 @@ const response = {
   },
 };
 
-module.exports = jest.fn().mockImplementation((value) => response[value]);
-module.exports.response = response;
+export default jest.fn().mockImplementation((value) => response[value]);
